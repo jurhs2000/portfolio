@@ -4,6 +4,9 @@ import resolve from '@rollup/plugin-node-resolve'
 import livereload from 'rollup-plugin-livereload'
 import { terser } from 'rollup-plugin-terser'
 import css from 'rollup-plugin-css-only'
+import image from '@rollup/plugin-image'
+import svg from 'rollup-plugin-svg'
+import files from 'rollup-plugin-import-file'
 import sveltePreprocess from 'svelte-preprocess'
 const preprocessOptions = require('./svelte.config').preprocessOptions
 
@@ -63,6 +66,14 @@ export default {
       dedupe: ['svelte'],
     }),
     commonjs(),
+
+    image(),
+    svg(),
+    files({
+      output: 'public/assets',
+      extensions: /\.(obj|fbx)$/,
+      hash: true,
+    }),
 
     // In dev mode, call `npm run start` once
     // the bundle has been generated

@@ -1,19 +1,20 @@
 <script>
-  export let name = 'world'
+  import Background from './components/Background.svelte'
+  import Home from './content/Home.svelte'
+  import Contact from './components/Contact.svelte'
 </script>
 
 <main>
-  <div class="hola">
-    <p>hola {name}</p>
+  <Background />
+  <div class="absolute">
+    <Home />
   </div>
+  <Contact />
 </main>
 
-<style lang="postcss">
-  .hola {
-    background-color: red;
-
-    p {
-      color: blue;
-    }
+<style>
+  .absolute {
+    position: absolute;
+    width: 100%;
   }
 </style>
