@@ -16,7 +16,7 @@
   import monitorT from '../resources/models/textures/monitor.jpg'
   import rocket from '../resources/models/rocket.obj'
   import rocketT from '../resources/models/textures/rocket.png'
-  import rocketT2 from '../resources/models/textures/rocketTrail.png'
+  import rocketT2 from '../resources/models/textures/rocketTrail.jpg'
   import consolaFont from '../resources/fonts/Consolas_Regular.typeface.json'
 
   let canvas
@@ -85,7 +85,7 @@
       })
       gccObj.scale.set(0.1, 0.1, 0.1)
       gccObj.position.y = 15
-      const groupLight = new THREE.PointLight(0xffffff, 1.2)
+      const groupLight = new THREE.PointLight(0xffffff, 1.2, 10)
       groupLight.position.y = 20
       const group = new THREE.Group()
       group.add(gccObj)
@@ -131,8 +131,8 @@
             const groupRocket = new THREE.Group()
             groupRocket.add(rocketObj)
             
-            const groupLight2 = new THREE.PointLight(0xffffff, 1.2, 20)
-            groupLight2.position.y = 40
+            const groupLight2 = new THREE.PointLight(0xffffff, 1.2, 10)
+            groupLight2.position.y = 30
             group.add(groupLight2)
 
             const fontLoader = new THREE.FontLoader()
@@ -178,10 +178,12 @@
       camera.position.x = Math.sin(clock.getElapsedTime() * 0.1) * 30;
       camera.position.z = Math.cos(clock.getElapsedTime() * 0.08) * 20;
 
-      if (scene.getObjectByName('models')?.position) {
+      if (scene.getObjectByName('models')) {
         scene.getObjectByName('models').position.x = Math.sin(clock.getElapsedTime() * 0.1) * 20
         scene.getObjectByName('models').position.z = Math.cos(clock.getElapsedTime() * 0.08) * 10
-        scene.getObjectByName('models').getObjectByName('rocket').rotation.y += 0.005
+        if (scene.getObjectByName('models').getObjectByName('rocket')) {
+          scene.getObjectByName('models').getObjectByName('rocket').rotation.y += 0.005
+        }
       }
 
       controls.update()
