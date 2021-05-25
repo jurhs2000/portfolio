@@ -4,14 +4,14 @@
   import LifeSection from '../components/LifeSection.svelte'
   import ProjectSection from '../components/projectSection.svelte';
 
-  let a = 1.4
+  let a = 1.5
   onMount(() => {
     const fadeBackground = setInterval(() => {
-      if (a > 0.1) a -= 0.02
+      if (a > 0.3) a -= 0.02
     }, 100);
     setTimeout(() => {
       clearInterval(fadeBackground)
-    }, 11000);
+    }, 10000);
   })
 
   const techs = [

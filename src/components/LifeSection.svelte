@@ -17,7 +17,7 @@
 
 <style lang="postcss">
   .container {
-    min-height: 500px;
+    min-height: 600px;
     display: flex;
     flex-direction: column;
     justify-content: center;

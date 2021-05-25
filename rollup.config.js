@@ -7,6 +7,7 @@ import css from 'rollup-plugin-css-only'
 import image from '@rollup/plugin-image'
 import svg from 'rollup-plugin-svg'
 import files from 'rollup-plugin-import-file'
+// import json from '@rollup/plugin-json'
 import sveltePreprocess from 'svelte-preprocess'
 const preprocessOptions = require('./svelte.config').preprocessOptions
 
@@ -67,11 +68,12 @@ export default {
     }),
     commonjs(),
 
+    // json(),
     image(),
     svg(),
     files({
       output: 'public/assets',
-      extensions: /\.(obj|fbx)$/,
+      extensions: /\.(obj|fbx|json)$/,
       hash: true,
     }),
 

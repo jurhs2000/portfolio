@@ -4,10 +4,10 @@
 
 <div class="container">
   <div>
-    <Writer text="I'm Jurhs, and I'm a" holder="Hi!" delay={1000} />
+    <Writer text="I'm Jurhs, and I'm a" holder="Hi!" delay={1250} />
   </div>
   <div class="developer">
-    <Writer text="developer." delay={5000} />
+    <Writer text="developer." delay={4500} />
   </div>
 </div>
 
