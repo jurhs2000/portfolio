@@ -8,7 +8,7 @@
 
 <div class={`container ${side}`}>
   <div class="title">
-    <Writer text={text} writeSpeed={50} />
+    <Writer text={text} writeSpeed={60} />
   </div>
   <div class="content">
     <p>{content}</p>
@@ -17,7 +17,7 @@
 
 <style lang="postcss">
   .container {
-    min-height: 600px;
+    min-height: 700px;
     display: flex;
     flex-direction: column;
     justify-content: center;

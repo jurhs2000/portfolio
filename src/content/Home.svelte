@@ -3,6 +3,7 @@
   import Welcome from '../components/Welcome.svelte'
   import LifeSection from '../components/LifeSection.svelte'
   import ProjectSection from '../components/projectSection.svelte';
+  import mongoIcon from '../resources/images/mongo.png'
 
   let a = 1.5
   onMount(() => {
@@ -30,6 +31,18 @@
     {
       name: 'MySQL',
       imgSrc: 'https://s3.us-east-1.amazonaws.com/blogueropro-s3-production/blog/qu%C3%A9-es-mysql-y-para-qu%C3%A9-sirve/Qu%C3%A9-es-MySQL-500X500_01.jpg'
+    },
+    {
+      name: 'Mongo',
+      imgSrc: mongoIcon
+    },
+    {
+      name: 'Angular 6',
+      imgSrc: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/800px-Angular_full_color_logo.svg.png'
+    },
+    {
+      name: 'Laravel',
+      imgSrc: 'https://zwestgroup.com/static/img/stack/laravel.png'
     }
   ]
 
@@ -39,7 +52,31 @@
       year: 2017,
       techs: [ techs[0], techs[1], techs[2], techs[3] ],
       desc: 'A web application for scheduling car service appointments at Honda mechanical workshops in Guatemala',
-      roles: ['Junior frontend developer', 'Backend support']
+      roles: ['Junior frontend developer', 'Backend support'],
+      git: {
+        text: 'Only frontend on GitLab',
+        link: 'https://gitlab.com/jurhs/HondaApp'
+      }
+    },
+    {
+      title: 'Kuw',
+      year: 2018,
+      techs: [ techs[0], techs[1], techs[2], techs[4] ],
+      desc: 'Scholar project, focus on boost independent street and cultural art.',
+      roles: ['Principal frontend developer'],
+      git: {
+        text: 'Private on GitLab',
+      }
+    },
+    {
+      title: 'Contec Industrial Web page',
+      year: 2018,
+      techs: [ techs[0], techs[5], techs[6], techs[3] ],
+      desc: 'An old version web page for Contec Industrial',
+      roles: ['Started as Junior frontend developer', 'Finished as Principal frontend developer'],
+      git: {
+        text: 'Private on GitLab',
+      }
     }
   ]
 </script>
@@ -56,6 +93,8 @@
     side="right"
   />
   <ProjectSection project={projects[0]} side="right" />
+  <ProjectSection project={projects[1]} side="right" />
+  <ProjectSection project={projects[2]} side="right" />
 </main>
 
 <style lang="postcss">

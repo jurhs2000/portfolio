@@ -7,7 +7,7 @@
 
 <div class={`container ${side}`}>
   <div class="title">
-    <Writer text={project.title} writeSpeed={50} />
+    <Writer text={project.title} writeSpeed={70} />
   </div>
   <Writer text={project.year} writeSpeed={250} />
   <div class="techs">
@@ -25,7 +25,7 @@
 
 <style lang="postcss">
   .container {
-    min-height: 500px;
+    min-height: 600px;
     display: flex;
     flex-direction: column;
     justify-content: center;

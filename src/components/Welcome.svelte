@@ -15,7 +15,7 @@
   @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap');
 
   .container {
-    height: 100vh;
+    height: 95vh;
     padding-left: 25px;
     display: flex;
     flex-direction: column;
