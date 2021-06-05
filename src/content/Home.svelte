@@ -4,6 +4,7 @@
   import LifeSection from '../components/LifeSection.svelte'
   import ProjectSection from '../components/projectSection.svelte';
   import mongoIcon from '../resources/images/mongo.png'
+  import css3Icon from '../resources/images/css3Icon.png'
 
   let a = 1.5
   onMount(() => {
@@ -43,6 +44,10 @@
     {
       name: 'Laravel',
       imgSrc: 'https://zwestgroup.com/static/img/stack/laravel.png'
+    },
+    {
+      name: 'CSS',
+      imgSrc: css3Icon
     }
   ]
 
@@ -77,7 +82,17 @@
       git: {
         text: 'Private on GitLab',
       }
-    }
+    },
+    {
+      title: 'CSS Only Draw',
+      year: 2021,
+      techs: [ techs[7] ],
+      desc: 'An old version web page for Contec Industrial',
+      roles: ['Started as Junior frontend developer', 'Finished as Principal frontend developer'],
+      git: {
+        text: 'Private on GitLab',
+      }
+    },
   ]
 </script>
 
@@ -95,6 +110,14 @@
   <ProjectSection project={projects[0]} side="right" />
   <ProjectSection project={projects[1]} side="right" />
   <ProjectSection project={projects[2]} side="right" />
+  <LifeSection
+    text="I won a scholarship"
+    content={`from the FJBG, to carry out my studies in 
+    Computer Science Engineering at the 
+    University of the Valley of Guatemala.`}
+    side="left"
+  />
+  <ProjectSection project={projects[3]} side="left" />
 </main>
 
 <style lang="postcss">

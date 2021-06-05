@@ -5,8 +5,8 @@
   import { spring } from 'svelte/motion';
 
 	let coords = spring({ x: window.innerWidth/2, y: window.innerHeight/2 }, {
-		stiffness: 0.1,
-		damping: 0.23
+		stiffness: 0.3,
+		damping: 0.4
 	});
 
 	let size = spring(10);

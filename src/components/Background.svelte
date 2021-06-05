@@ -14,10 +14,16 @@
   import notebookT from '../resources/models/textures/notebook.jpg'
   import monitor from '../resources/models/monitor.obj'
   import monitorT from '../resources/models/textures/monitor.jpg'
-  import rocket from '../resources/models/rocket.obj'
+  import rocket from '../resources/models/rocket2.obj'
   import rocketT from '../resources/models/textures/rocket.png'
   import rocketT2 from '../resources/models/textures/rocketTrail.jpg'
   import consolaFont from '../resources/fonts/Consolas_Regular.typeface.json'
+  import rocket2blast from '../resources/models/textures/Blast_DF.png'
+  import rocket2blast2 from '../resources/models/textures/Blast_ALPHA.png'
+  import rocket2hull from '../resources/models/textures/Hull_DF.png'
+  import rocket2moon from '../resources/models/textures/Moon_DF.png'
+  import rocket2strut from '../resources/models/textures/Strut_DF.png'
+  import moonT from '../resources/textures/moon.jpg'
 
   let canvas
   let y
@@ -77,6 +83,7 @@
 
     const objLoader = new OBJLoader()
     objLoader.load(`./assets/${gcc}`, async (gccObj) => {
+
       const gccTexture = textureLoader.load(gccT)
       gccObj.traverse((child) => {
         if (child instanceof THREE.Mesh) {
@@ -85,11 +92,13 @@
       })
       gccObj.scale.set(0.1, 0.1, 0.1)
       gccObj.position.y = 15
+
       const groupLight = new THREE.PointLight(0xffffff, 1.2, 10)
       groupLight.position.y = 20
       const group = new THREE.Group()
       group.add(gccObj)
       group.add(groupLight)
+
       objLoader.load(`./assets/${notebook}`, async (notebookObj) => {
         const notebookTexture = textureLoader.load(notebookT)
         notebookObj.traverse((child) => {
@@ -102,6 +111,7 @@
         notebookObj.position.x = 3
         notebookObj.position.z = -3
         group.add(notebookObj)
+
         objLoader.load(`./assets/${monitor}`, async (monitorObj) => {
           const monitorTexture = textureLoader.load(monitorT)
           monitorObj.traverse((child) => {
@@ -115,44 +125,49 @@
           monitorObj.position.z = -4
           monitorObj.rotation.y = 0.75
           group.add(monitorObj)
+
           objLoader.load(`./assets/${rocket}`, async (rocketObj) => {
-            const rocketTexture = {
-              'Rocket_Cylinder': textureLoader.load(rocketT),
-              'RocketTrail_Mesh': textureLoader.load(rocketT2)
+            const rocketTexture2 = {
+              'Moon_Untitled.003': textureLoader.load(rocket2moon),
+              'Hull_Untitled.006': textureLoader.load(rocket2hull),
+              'Blast1_Untitled.013': textureLoader.load(rocket2blast),
+              'Blast2_Untitled.009': textureLoader.load(rocket2blast2),
+              'Strut1_Untitled.005': textureLoader.load(rocket2strut),
+              'Strut2_Untitled.002': textureLoader.load(rocket2strut),
+              'Strut3_Untitled.010': textureLoader.load(rocket2strut),
+              'Strut4_Untitled.011': textureLoader.load(rocket2strut),
+              'Asteroids_Untitled': textureLoader.load(rocket2moon),
+              'StrutBlast1_Untitled.004': textureLoader.load(rocket2blast)
             }
             rocketObj.traverse((child) => {
               if (child instanceof THREE.Mesh) {
-                child.material.map = rocketTexture[child.name]
+                child.material.map = rocketTexture2[child.name]
               }
             })
             rocketObj.scale.set(0.7, 0.7, 0.7)
-            rocketObj.position.y = 24
-            rocketObj.position.z = 5
+            rocketObj.position.set(0,34,0)
             const groupRocket = new THREE.Group()
             groupRocket.add(rocketObj)
-            
-            const groupLight2 = new THREE.PointLight(0xffffff, 1.2, 10)
-            groupLight2.position.y = 30
-            group.add(groupLight2)
 
-            const fontLoader = new THREE.FontLoader()
-            fontLoader.load(`./assets/${consolaFont}`, (font) => {
-              const textGeometry = new THREE.TextGeometry('Hello World!', {
-                font: font,
-                size: 0.8,
-                height: 0.1,
-                curveSegments: 12
-              })
-              const textMaterial = new THREE.MeshPhongMaterial( { color: 0x0BE6A4 } );
-              const text = new THREE.Mesh(textGeometry, textMaterial)
-              text.position.y = 26
-              text.position.x = 5
-              text.position.z = 5
-              text.rotation.y = 2.5
-              groupRocket.add(text)
-              groupRocket.name = 'rocket'
-              group.add(groupRocket)
-            })
+            const moonGeo = new THREE.SphereGeometry(3.1, 32, 32)
+            const moonTexture = textureLoader.load(moonT)
+            const moonMat = new THREE.MeshBasicMaterial({ map: moonTexture })
+            const moon = new THREE.Mesh(moonGeo, moonMat)
+            moon.position.y = 32.7
+            groupRocket.add(moon)
+            
+            const groupLight2 = new THREE.PointLight(0xffffff, 5, 20)
+            groupLight2.position.set(2, 39, 0)
+            const groupLight3 = new THREE.PointLight(0xffffff, 5, 20)
+            groupLight3.position.set(-2, 39, 0)
+            const groupLight4 = new THREE.PointLight(0xffffff, 5, 20)
+            groupLight4.position.set(0, 39, 2)
+            const groupLight5 = new THREE.PointLight(0xffffff, 5, 20)
+            groupLight5.position.set(0, 39, -2)
+            groupRocket.add(groupLight2, groupLight3, groupLight4, groupLight5)
+
+            groupRocket.name = 'rocket'
+            group.add(groupRocket)
           })
         })
       })
@@ -184,6 +199,16 @@
         if (scene.getObjectByName('models').getObjectByName('rocket')) {
           scene.getObjectByName('models').getObjectByName('rocket').rotation.y += 0.005
         }
+      }
+      
+      if (camera.position.y > 70) {
+        controls.target.set(0,0,0)
+      } else if (camera.position.y > 24) {
+        controls.target.set(0,((y*0.02)-14)*(2),0)
+        camera.position.x = Math.sin(clock.getElapsedTime() * 0.1) * (30 + ((y*0.02)-14) * 1.5);
+        camera.position.z = Math.cos(clock.getElapsedTime() * 0.08) * (20 + ((y*0.02)-14) * 1.5);
+      } else {
+        controls.target.set(0,0,0)
       }
 
       controls.update()

@@ -34,6 +34,7 @@
     .content {
       p {
         font-size: 1.7em;
+        white-space: pre-line;
       }
     }
   }
