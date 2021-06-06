@@ -105,8 +105,8 @@
   {#if $size > 0}
     <path
       style="transform-origin: 84px 84px;"
-      fill="#ff3e00"
-      transform={`translate(${$coords.x + (($size > 0 ? -84 : 0))} ${$coords.y + (($size > 0 ? -84 : 0))}) scale(${(($coords.x <= 10 || $coords.x >= (window.innerWidth - 10)) ? $size * 0.5 : $size * 1.5)} ${($coords.y <= 10 || $coords.y >= (window.innerHeight - 10)) ? $size * 0.5 : $size * 1.5})`}
+      fill="#00ffff"
+      transform={`translate(${$coords.x + (($size > 0 ? -84 : 0))} ${$coords.y + (($size > 0 ? -84 : 0))}) scale(${(($coords.x <= 10 || $coords.x >= (window.innerWidth - 15)) ? $size * 0.5 : $size * 1.5)} ${($coords.y <= 10 || $coords.y >= (window.innerHeight - 10)) ? $size * 0.5 : $size * 1.5})`}
       d={spline(animate(), 1, true)}
       width="100%"
       height="100%"
@@ -130,6 +130,6 @@
   }
 
   circle {
-    fill: #ff3e00;
+    fill: #00ffff;
   }
 </style>

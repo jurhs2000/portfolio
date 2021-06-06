@@ -15,15 +15,11 @@
   import notebookT from '../resources/models/textures/notebook.jpg'
   import monitor from '../resources/models/monitor.obj'
   import monitorT from '../resources/models/textures/monitor.jpg'
-  import rocket from '../resources/models/rocket2.obj'
-  import rocketT from '../resources/models/textures/rocket.png'
-  import rocketT2 from '../resources/models/textures/rocketTrail.jpg'
-  import consolaFont from '../resources/fonts/Consolas_Regular.typeface.json'
-  import rocket2blast from '../resources/models/textures/Blast_DF.png'
-  import rocket2blast2 from '../resources/models/textures/Blast_ALPHA.png'
-  import rocket2hull from '../resources/models/textures/Hull_DF.png'
-  import rocket2moon from '../resources/models/textures/Moon_DF.png'
-  import rocket2strut from '../resources/models/textures/Strut_DF.png'
+  import rocket from '../resources/models/rocket.obj'
+  import rocketBlast from '../resources/models/textures/Blast_DF.png'
+  import rocketHull from '../resources/models/textures/Hull_DF.png'
+  import rocketMoon from '../resources/models/textures/Moon_DF.png'
+  import rocketStrut from '../resources/models/textures/Strut_DF.png'
   import moonT from '../resources/textures/moon.jpg'
   import UVG from '../resources/models/UVG.glb'
 
@@ -130,16 +126,16 @@
 
           objLoader.load(`./assets/${rocket}`, async (rocketObj) => {
             const rocketTexture2 = {
-              'Moon_Untitled.003': textureLoader.load(rocket2moon),
-              'Hull_Untitled.006': textureLoader.load(rocket2hull),
-              'Blast1_Untitled.013': textureLoader.load(rocket2blast),
-              'Blast2_Untitled.009': textureLoader.load(rocket2blast2),
-              'Strut1_Untitled.005': textureLoader.load(rocket2strut),
-              'Strut2_Untitled.002': textureLoader.load(rocket2strut),
-              'Strut3_Untitled.010': textureLoader.load(rocket2strut),
-              'Strut4_Untitled.011': textureLoader.load(rocket2strut),
-              'Asteroids_Untitled': textureLoader.load(rocket2moon),
-              'StrutBlast1_Untitled.004': textureLoader.load(rocket2blast)
+              'Moon_Untitled.003': textureLoader.load(rocketMoon),
+              'Hull_Untitled.006': textureLoader.load(rocketHull),
+              'Blast1_Untitled.013': textureLoader.load(rocketBlast),
+              'Blast2_Untitled.009': textureLoader.load(rocketBlast),
+              'Strut1_Untitled.005': textureLoader.load(rocketStrut),
+              'Strut2_Untitled.002': textureLoader.load(rocketStrut),
+              'Strut3_Untitled.010': textureLoader.load(rocketStrut),
+              'Strut4_Untitled.011': textureLoader.load(rocketStrut),
+              'Asteroids_Untitled': textureLoader.load(rocketMoon),
+              'StrutBlast1_Untitled.004': textureLoader.load(rocketBlast)
             }
             rocketObj.traverse((child) => {
               if (child instanceof THREE.Mesh) {

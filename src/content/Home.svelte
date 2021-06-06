@@ -17,9 +17,7 @@
   import extension3 from '../resources/projects-images/extension3.jpg'
   import honda1 from '../resources/projects-images/honda1.jpg'
   import honda2 from '../resources/projects-images/honda2.jpg'
-  import kuw from '../resources/projects-images/kuw.jpeg'
   import kuwCollage from '../resources/projects-images/kuw-collage.jpg'
-  import contecLogo from '../resources/projects-images/contec-logo.png'
   import spofity1 from '../resources/projects-images/spofity1.jpg'
   import spofity2 from '../resources/projects-images/spofity2.jpg'
   import spofity3 from '../resources/projects-images/spofity3.jpg'
@@ -30,6 +28,7 @@
 
   let a = 1.5
   onMount(() => {
+    window.scrollTo(0,0)
     const fadeBackground = setInterval(() => {
       if (a > 0.3) a -= 0.02
     }, 100)
@@ -118,7 +117,7 @@
       title: 'Honda demo',
       year: 2017,
       techs: [ techs[0], techs[1], techs[2], techs[3] ],
-      desc: 'A web application for scheduling car service appointments at Honda mechanical workshops in Guatemala',
+      desc: 'A web application for scheduling car service appointments at Honda mechanical workshops in Guatemala.',
       roles: ['Junior frontend developer', 'Backend support'],
       git: {
         text: 'Only frontend on GitLab',
@@ -135,24 +134,24 @@
       git: {
         text: 'Private on GitLab',
       },
-      images: [kuw, kuwCollage]
+      images: [kuwCollage]
     },
     {
       title: 'Contec Industrial Web page',
       year: 2018,
       techs: [ techs[0], techs[5], techs[6], techs[3] ],
-      desc: 'An old version of the web page for Contec Industrial',
+      desc: 'An old version of the web page for Contec Industrial.',
       roles: ['Started as Junior frontend developer', 'Finished as Principal frontend developer'],
       git: {
         text: 'Private on GitLab',
       },
-      images: [contecLogo]
+      images: ['https://directoriogerencial.com/wp-content/uploads/logo-01-9.jpg']
     },
     {
-      title: 'CSS Only Draw',
+      title: 'CSS Only, Draw',
       year: 2021,
       techs: [ techs[7] ],
-      desc: 'A drawing using only css, of the character from the video game Undertale, Sans.',
+      desc: 'A draw using only css, of the character from the video game Undertale, Sans.',
       roles: ['author'],
       git: {
         text: 'Demo on Codepen',
@@ -164,7 +163,7 @@
       title: 'React Static Page',
       year: 2021,
       techs: [ techs[8], techs[9], techs[10], techs[11], techs[12] ],
-      desc: 'A copy of super smash bros ultimate fighters page',
+      desc: 'A copy of the Nintendo\'s Super Smash Bros Ultimate fighters web page.',
       roles: ['author'],
       git: {
         text: 'Code on Github',
@@ -176,7 +175,7 @@
       title: 'Attendance App',
       year: 2021,
       techs: [ techs[13], techs[14] ],
-      desc: 'A Chrome Extension',
+      desc: 'A custom Chrome extension to take attendance at a zoom meeting in the browser.',
       roles: ['Co-author'],
       git: {
         text: 'Code on Github',
@@ -188,7 +187,7 @@
       title: 'Spofity',
       year: 2021,
       techs: [ techs[0], techs[8], techs[15], techs[2], techs[4] ],
-      desc: 'A custom web music app using spotify reproductor',
+      desc: 'A custom web music app using external Spotify features.',
       roles: ['Co-author'],
       git: {
         text: 'Code on Github',
@@ -205,7 +204,8 @@
       git: {
         text: 'Code on Github',
         link: 'https://github.com/jurhs2000/portfolio',
-      }
+      },
+      images: []
     },
   ]
 </script>
