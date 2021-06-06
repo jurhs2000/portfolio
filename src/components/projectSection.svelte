@@ -11,7 +11,9 @@
       <div class="title">
         <Writer text={project.title} writeSpeed={70} />
       </div>
-      <Writer text={project.year} writeSpeed={250} />
+      <div class="year">
+        <Writer text={project.year} writeSpeed={250} />
+      </div>
       <div class="techs">
         {#each project.techs as { name, imgSrc }, i }
           <div class="tech" key={i}>
@@ -53,7 +55,7 @@
   @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap');
 
   .container {
-    min-height: 600px;
+    min-height: 630px;
     padding: 15px 10% 15px 10%;
 
     .left-separator {
@@ -80,7 +82,15 @@
         .title {
           :global(.writer-container) {
             :global(p) {
-              font-size: 2.7em;
+              font-size: 2.5em;
+              min-height: 50px;
+            }
+          }
+        }
+        .year {
+          :global(.writer-container) {
+            :global(p) {
+              min-height: 18px;
             }
           }
         }
@@ -98,8 +108,11 @@
             margin-right: 10px;
 
             img {
-              height: 75px;
+              height: 60px;
               margin-bottom: 10px;
+            }
+            p {
+              font-size: 0.8em;
             }
           }
         }
