@@ -31,7 +31,7 @@
 
     .developer {
       :global(p) {
-        color: blue;
+        color: rgb(0, 162, 255);
         font-family: 'Source Code Pro', monospace;
       }
     }

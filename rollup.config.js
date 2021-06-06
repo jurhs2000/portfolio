@@ -73,7 +73,7 @@ export default {
     svg(),
     files({
       output: 'public/assets',
-      extensions: /\.(obj|fbx|json)$/,
+      extensions: /\.(obj|glb|json)$/,
       hash: true,
     }),
 

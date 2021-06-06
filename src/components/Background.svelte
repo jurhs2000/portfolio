@@ -4,6 +4,7 @@
   import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
   import { Clock } from 'three/src/core/Clock'
   import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
+  import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
   import spaceSkybox from '../resources/textures/space-skybox.jpg'
   import earthTexture from '../resources/textures/earth-low.jpg'
   import earthNormal from '../resources/textures/earth-normal.jpg'
@@ -24,6 +25,7 @@
   import rocket2moon from '../resources/models/textures/Moon_DF.png'
   import rocket2strut from '../resources/models/textures/Strut_DF.png'
   import moonT from '../resources/textures/moon.jpg'
+  import UVG from '../resources/models/UVG.glb'
 
   let canvas
   let y
@@ -63,13 +65,13 @@
     const addStar = () => {
       const star = new THREE.Sprite(material)
       
-      const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(100))
+      const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(200))
 
       star.position.set(x,y,z)
       scene.add(star)
     }
 
-    Array(300).fill().forEach(addStar)
+    Array(400).fill().forEach(addStar)
 
     const earth = new THREE.Mesh(
       new THREE.SphereGeometry(3, 32, 32),
@@ -160,14 +162,37 @@
             groupLight2.position.set(2, 39, 0)
             const groupLight3 = new THREE.PointLight(0xffffff, 5, 20)
             groupLight3.position.set(-2, 39, 0)
-            const groupLight4 = new THREE.PointLight(0xffffff, 5, 20)
+            const groupLight4 = new THREE.PointLight(0xffffff, 5, 10)
             groupLight4.position.set(0, 39, 2)
-            const groupLight5 = new THREE.PointLight(0xffffff, 5, 20)
+            const groupLight5 = new THREE.PointLight(0xffffff, 5, 10)
             groupLight5.position.set(0, 39, -2)
             groupRocket.add(groupLight2, groupLight3, groupLight4, groupLight5)
 
             groupRocket.name = 'rocket'
             group.add(groupRocket)
+
+            const gltfLoader = new GLTFLoader()
+            gltfLoader.load(`./assets/${UVG}`, (uvgObject) => {
+              uvgObject.scene.position.set(0,75,0)
+              const groupUVG = new THREE.Group()
+              groupUVG.add(uvgObject.scene)
+
+              const groupLight6 = new THREE.PointLight(0xffffff, 1.4, 20)
+              groupLight6.position.set(-15, 80, 10)
+              const groupLight7 = new THREE.PointLight(0xffffff, 1.4, 20)
+              groupLight7.position.set(0, 80, -12)
+              const groupLight8 = new THREE.PointLight(0xffffff, 1.6, 20)
+              groupLight8.position.set(15, 80, 5)
+              groupUVG.add(groupLight6, groupLight7, groupLight8)
+
+              const plh1 = new THREE.PointLightHelper(groupLight6)
+              const plh2 = new THREE.PointLightHelper(groupLight7)
+              const plh3 = new THREE.PointLightHelper(groupLight8)
+              groupUVG.add(plh1, plh2, plh3)
+
+              groupUVG.name = 'uvg'
+              group.add(groupUVG)
+            })
           })
         })
       })
@@ -175,8 +200,18 @@
       scene.add(group)
     })
 
+    let posCam = 0
     const moveCameraScroll = () => {
-      camera.position.y = (y * 0.02) + 10
+      posCam = (y * 0.02) + 10
+      if (posCam > 90) {
+        // camera.position.y = 68
+      } else if (posCam > 75) {
+        camera.position.y = posCam - 32 + (((y*0.02)-65)*1.5) // 75 - 43
+      } else if (posCam > 43) {
+        // camera.position.y = 43
+      } else {
+        camera.position.y = posCam
+      }
     }
 
     moveCameraScroll()
@@ -185,30 +220,46 @@
     const clock = new Clock()
     clock.start()
 
+    let rocketPosY = 0
+    let uvgPos = 0
     const animate = () => {
       requestAnimationFrame(animate)
 
       earth.rotation.y += 0.005
-      
-      camera.position.x = Math.sin(clock.getElapsedTime() * 0.1) * 30;
-      camera.position.z = Math.cos(clock.getElapsedTime() * 0.08) * 20;
 
       if (scene.getObjectByName('models')) {
         scene.getObjectByName('models').position.x = Math.sin(clock.getElapsedTime() * 0.1) * 20
         scene.getObjectByName('models').position.z = Math.cos(clock.getElapsedTime() * 0.08) * 10
         if (scene.getObjectByName('models').getObjectByName('rocket')) {
-          scene.getObjectByName('models').getObjectByName('rocket').rotation.y += 0.005
+          scene.getObjectByName('models').getObjectByName('rocket').rotation.y += 0.01
+        }
+        if (scene.getObjectByName('models').getObjectByName('uvg')) {
+          scene.getObjectByName('models').getObjectByName('uvg').rotation.y += 0.005
         }
       }
       
-      if (camera.position.y > 70) {
-        controls.target.set(0,0,0)
-      } else if (camera.position.y > 24) {
-        controls.target.set(0,((y*0.02)-14)*(2),0)
-        camera.position.x = Math.sin(clock.getElapsedTime() * 0.1) * (30 + ((y*0.02)-14) * 1.5);
-        camera.position.z = Math.cos(clock.getElapsedTime() * 0.08) * (20 + ((y*0.02)-14) * 1.5);
+      if (posCam > 90) {
+        controls.target.set(0,uvgPos,0)
+        camera.position.x = Math.sin(clock.getElapsedTime() * 0.1) * ((30 + (((y*0.02)-14) * 1.5)) - (((y*0.02)-33)*1.9) + (((y*0.02)-65)*1.9) - (((y*0.02)-80)*1.35));
+        camera.position.z = Math.cos(clock.getElapsedTime() * 0.08) * (((20 + ((y*0.02)-14) * 1.5)) - (((y*0.02)-33)*1.9) + (((y*0.02)-65)*1.9) - (((y*0.02)-80)*1.35));
+      } else if (posCam > 75) {
+        uvgPos = rocketPosY + ((y*0.02)-65)*(2.3)
+        controls.target.set(0,uvgPos,0)
+        camera.position.x = Math.sin(clock.getElapsedTime() * 0.1) * ((30 + (((y*0.02)-14) * 1.5)) - (((y*0.02)-33)*1.9) + (((y*0.02)-65)*1.9));
+        camera.position.z = Math.cos(clock.getElapsedTime() * 0.08) * (((20 + ((y*0.02)-14) * 1.5)) - (((y*0.02)-33)*1.9) + (((y*0.02)-65)*1.9));
+      } else if (posCam > 43) {
+        controls.target.set(0,rocketPosY,0)
+        camera.position.x = Math.sin(clock.getElapsedTime() * 0.1) * ((30 + (((y*0.02)-14) * 1.5)) - (((y*0.02)-33)*1.9));
+        camera.position.z = Math.cos(clock.getElapsedTime() * 0.08) * (((20 + ((y*0.02)-14) * 1.5)) - (((y*0.02)-33)*1.9));
+      } else if (posCam > 24) {
+        rocketPosY = ((y*0.02)-14)*(2)
+        controls.target.set(0,rocketPosY,0)
+        camera.position.x = Math.sin(clock.getElapsedTime() * 0.1) * (30 + (((y*0.02)-14) * 1.5));
+        camera.position.z = Math.cos(clock.getElapsedTime() * 0.08) * (20 + (((y*0.02)-14) * 1.5));
       } else {
         controls.target.set(0,0,0)
+        camera.position.x = Math.sin(clock.getElapsedTime() * 0.1) * 30;
+        camera.position.z = Math.cos(clock.getElapsedTime() * 0.08) * 20;
       }
 
       controls.update()
@@ -242,6 +293,6 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: -100;
+    z-index: -1;
   }
 </style>

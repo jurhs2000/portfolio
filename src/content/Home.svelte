@@ -5,15 +5,37 @@
   import ProjectSection from '../components/projectSection.svelte';
   import mongoIcon from '../resources/images/mongo.png'
   import css3Icon from '../resources/images/css3Icon.png'
+  import reactIcon from '../resources/images/react.png'
+  import webpackIcon from '../resources/images/webpack.png'
+  import babelIcon from '../resources/images/babel.png'
+  import postcssIcon from '../resources/images/postcss.png'
+  import extIcon from '../resources/images/extension.png'
+  import svelteIcon from '../resources/images/svelte.png'
+  import cssOnly from '../resources/projects-images/cssOnly.jpg'
+  import extension1 from '../resources/projects-images/extension1.jpg'
+  import extension2 from '../resources/projects-images/extension2.jpg'
+  import extension3 from '../resources/projects-images/extension3.jpg'
+  import honda1 from '../resources/projects-images/honda1.jpg'
+  import honda2 from '../resources/projects-images/honda2.jpg'
+  import kuw from '../resources/projects-images/kuw.jpeg'
+  import kuwCollage from '../resources/projects-images/kuw-collage.jpg'
+  import contecLogo from '../resources/projects-images/contec-logo.png'
+  import spofity1 from '../resources/projects-images/spofity1.jpg'
+  import spofity2 from '../resources/projects-images/spofity2.jpg'
+  import spofity3 from '../resources/projects-images/spofity3.jpg'
+  import spofity4 from '../resources/projects-images/spofity4.jpg'
+  import spofity5 from '../resources/projects-images/spofity5.jpg'
+  import static1 from '../resources/projects-images/static1.jpg'
+  import static2 from '../resources/projects-images/static2.jpg'
 
   let a = 1.5
   onMount(() => {
     const fadeBackground = setInterval(() => {
       if (a > 0.3) a -= 0.02
-    }, 100);
+    }, 100)
     setTimeout(() => {
       clearInterval(fadeBackground)
-    }, 10000);
+    }, 10000)
   })
 
   const techs = [
@@ -48,7 +70,47 @@
     {
       name: 'CSS',
       imgSrc: css3Icon
-    }
+    },
+    {
+      name: 'React',
+      imgSrc: reactIcon
+    },
+    {
+      name: 'Webpack',
+      imgSrc: webpackIcon
+    },
+    {
+      name: 'Babel',
+      imgSrc: babelIcon
+    },
+    {
+      name: 'ESLint',
+      imgSrc: 'https://d33wubrfki0l68.cloudfront.net/204482ca413433c80cd14fe369e2181dd97a2a40/092e2/assets/img/logo.svg'
+    },
+    {
+      name: 'PostCSS',
+      imgSrc: postcssIcon
+    },
+    {
+      name: 'Chromium',
+      imgSrc: 'https://upload.wikimedia.org/wikipedia/commons/2/26/Chromium_logo.png'
+    },
+    {
+      name: 'Extension',
+      imgSrc: extIcon
+    },
+    {
+      name: 'PosrgreSQL',
+      imgSrc: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/1024px-Postgresql_elephant.svg.png'
+    },
+    {
+      name: 'Svelte',
+      imgSrc: svelteIcon
+    },
+    {
+      name: 'Three JS',
+      imgSrc: 'https://aws1.discourse-cdn.com/standard17/uploads/threejs/original/2X/e/e4f86d2200d2d35c30f7b1494e96b9595ebc2751.png'
+    },
   ]
 
   const projects = [
@@ -61,7 +123,8 @@
       git: {
         text: 'Only frontend on GitLab',
         link: 'https://gitlab.com/jurhs/HondaApp'
-      }
+      },
+      images: [honda1, honda2]
     },
     {
       title: 'Kuw',
@@ -71,26 +134,77 @@
       roles: ['Principal frontend developer'],
       git: {
         text: 'Private on GitLab',
-      }
+      },
+      images: [kuw, kuwCollage]
     },
     {
       title: 'Contec Industrial Web page',
       year: 2018,
       techs: [ techs[0], techs[5], techs[6], techs[3] ],
-      desc: 'An old version web page for Contec Industrial',
+      desc: 'An old version of the web page for Contec Industrial',
       roles: ['Started as Junior frontend developer', 'Finished as Principal frontend developer'],
       git: {
         text: 'Private on GitLab',
-      }
+      },
+      images: [contecLogo]
     },
     {
       title: 'CSS Only Draw',
       year: 2021,
       techs: [ techs[7] ],
-      desc: 'An old version web page for Contec Industrial',
-      roles: ['Started as Junior frontend developer', 'Finished as Principal frontend developer'],
+      desc: 'A drawing using only css, of the character from the video game Undertale, Sans.',
+      roles: ['author'],
       git: {
-        text: 'Private on GitLab',
+        text: 'Demo on Codepen',
+        link: 'https://codepen.io/jurhs/pen/KKNzEad',
+      },
+      images: [cssOnly]
+    },
+    {
+      title: 'React Static Page',
+      year: 2021,
+      techs: [ techs[8], techs[9], techs[10], techs[11], techs[12] ],
+      desc: 'A copy of super smash bros ultimate fighters page',
+      roles: ['author'],
+      git: {
+        text: 'Code on Github',
+        link: 'https://github.com/jurhs2000/static-page-react',
+      },
+      images: [static1, static2]
+    },
+    {
+      title: 'Attendance App',
+      year: 2021,
+      techs: [ techs[13], techs[14] ],
+      desc: 'A Chrome Extension',
+      roles: ['Co-author'],
+      git: {
+        text: 'Code on Github',
+        link: 'https://github.com/jurhs2000/AttendanceExtension',
+      },
+      images: [extension1, extension2, extension3]
+    },
+    {
+      title: 'Spofity',
+      year: 2021,
+      techs: [ techs[0], techs[8], techs[15], techs[2], techs[4] ],
+      desc: 'A custom web music app using spotify reproductor',
+      roles: ['Co-author'],
+      git: {
+        text: 'Code on Github',
+        link: 'https://github.com/martspain/DataBaseProjectOne'
+      },
+      images: [spofity1, spofity2, spofity3, spofity4, spofity5]
+    },
+    {
+      title: 'This Portfolio',
+      year: 2021,
+      techs: [ techs[16], techs[17] ],
+      desc: '...',
+      roles: ['Author'],
+      git: {
+        text: 'Code on Github',
+        link: 'https://github.com/jurhs2000/portfolio',
       }
     },
   ]
@@ -111,13 +225,17 @@
   <ProjectSection project={projects[1]} side="right" />
   <ProjectSection project={projects[2]} side="right" />
   <LifeSection
-    text="I won a scholarship"
+    text="I got a scholarship"
     content={`from the FJBG, to carry out my studies in 
     Computer Science Engineering at the 
     University of the Valley of Guatemala.`}
     side="left"
   />
   <ProjectSection project={projects[3]} side="left" />
+  <ProjectSection project={projects[4]} side="left" />
+  <ProjectSection project={projects[5]} side="left" />
+  <ProjectSection project={projects[6]} side="left" />
+  <ProjectSection project={projects[7]} side="left" />
 </main>
 
 <style lang="postcss">
