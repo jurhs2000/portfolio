@@ -35,7 +35,7 @@
     const textureLoader = new THREE.TextureLoader()
 
     renderer.setPixelRatio(window.devicePixelRatio)
-    renderer.setSize(window.innerWidth, window.innerHeight)
+    renderer.setSize(window.innerWidth, window.innerHeight + 1)
 
     renderer.render(scene, camera)
 

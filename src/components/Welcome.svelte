@@ -7,7 +7,7 @@
     <Writer text="I'm Jurhs, and I'm a" holder="Hi!" delay={1250} />
   </div>
   <div class="developer">
-    <Writer text="developer." delay={4500} />
+    <Writer text="developer." delay={3900} />
   </div>
 </div>
 
